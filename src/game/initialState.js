@@ -24,7 +24,7 @@ export const initialGameState = (playerHeroId, enemyHeroId) => {
       turnNumber: 0,
       lastPlayedCost: null,
       cascadeCount: 0,
-      revealedCard: null,
+      revealedCascadeChain: [],
       phase: 'none',
       waitingForPlayer: false,
     };
@@ -59,7 +59,7 @@ export const initialGameState = (playerHeroId, enemyHeroId) => {
     turnNumber: 1,
     lastPlayedCost: null,
     cascadeCount: 0,
-    revealedCard: null,
+    revealedCascadeChain: [],
     phase: 'start-turn',
     waitingForPlayer: true,
   };
