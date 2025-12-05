@@ -1,0 +1,58 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+.report/
+
+# Runtime data
+.next/
+.nuxt/
+.vercel/
+.svelte-kit/
+.stackblitz/
+.turbo/
+.vite/
+*.tgz
+.env
+.env*.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.staging.local
+
+# Dependency directories
+node_modules
+/dist
+/build
+/out
+
+# IDEs and others
+.idea/
+.vscode/
+.DS_Store
+*.seed
+*.pid
+*.ps1
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.settings
+.vs/
+.history
+coverage/
+.var
+
+# Local config
+config.local.json
+
+# Test logs
+vitest_output.log
+vitest_error.log
