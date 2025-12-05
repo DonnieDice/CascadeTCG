@@ -233,7 +233,7 @@ export const gameReducer = (state, action) => {
       }
 
       // R < C: FREE CASCADE (Capture)
-      if (card.cost < state.lastPlayedCost && state.cascadeCount < 3) {
+      if (card.cost < state.lastPlayedCost && state.cascadeCount < 2) {
         const newCascadeCount = state.cascadeCount + 1;
         newState = {
           ...newState,
@@ -249,7 +249,7 @@ export const gameReducer = (state, action) => {
       else if (card.cost === state.lastPlayedCost) {
         const requiredSeals = card.cost + 1;
         
-        if (forcedCapture && state.playerSeals >= requiredSeals && state.cascadeCount < 3) {
+        if (forcedCapture && state.playerSeals >= requiredSeals && state.cascadeCount < 2) {
           const newCascadeCount = state.cascadeCount + 1;
           newState = {
             ...newState,
@@ -345,7 +345,7 @@ export const gameReducer = (state, action) => {
       }
 
       // R < C: FREE CASCADE (Capture)
-      if (card.cost < state.lastPlayedCost && state.cascadeCount < 3) {
+      if (card.cost < state.lastPlayedCost && state.cascadeCount < 2) {
         const newCascadeCount = state.cascadeCount + 1;
         newState = {
           ...newState,
@@ -361,7 +361,7 @@ export const gameReducer = (state, action) => {
       else if (card.cost === state.lastPlayedCost) {
         const requiredSeals = card.cost + 1;
         
-        if (forcedCapture && state.playerSeals >= requiredSeals && state.cascadeCount < 3) {
+        if (forcedCapture && state.playerSeals >= requiredSeals && state.cascadeCount < 2) {
           const newCascadeCount = state.cascadeCount + 1;
           newState = {
             ...newState,
@@ -390,7 +390,7 @@ export const gameReducer = (state, action) => {
       else if (card.cost > state.lastPlayedCost) {
         const requiredSeals = card.cost + 1;
         
-        if (forcedCapture && state.playerSeals >= requiredSeals && state.cascadeCount < 3) {
+        if (forcedCapture && state.playerSeals >= requiredSeals && state.cascadeCount < 2) {
           const newCascadeCount = state.cascadeCount + 1;
           newState = {
             ...newState,

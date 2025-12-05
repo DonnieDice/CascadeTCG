@@ -188,7 +188,7 @@
         {/* Player Actions - Compact */}
         {isPlayerTurn && waitingForPlayer && isGameActive && (
           <div className="flex gap-2 justify-center p-2 bg-light/10 rounded shadow-sm flex-shrink-0">
-            {phase === 'choice' && cascadeCount < 3 && (
+            {phase === 'choice' && cascadeCount < 2 && (
               <>
                 <button
                   onClick={() => dispatch({ type: 'USE_SEAL' })}
@@ -210,7 +210,7 @@
               <>
                 {(revealedCascadeChain[revealedCascadeChain.length - 1]?.cost >= lastPlayedCost || lastPlayedCost === null) && 
                  playerSeals >= (revealedCascadeChain[revealedCascadeChain.length - 1]?.cost || 0) + 1 && 
-                 cascadeCount < 3 && (
+                 cascadeCount < 2 && (
                   <button
                     onClick={() =>
                       dispatch({
