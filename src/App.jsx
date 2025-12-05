@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect, useState } from 'react';
 import { HEROES } from './constants';
 import gameReducer from './game/GameEngine';
-import { initialGameState } from './game/initialState'; // <--- ADDED THIS LINE
+import { initialGameState } from './game/initialState';
 import HeroSelect from './components/HeroSelect';
 import GameView from './components/GameView';
 
@@ -25,7 +25,6 @@ export default function App() {
 
   // Effect for enemy turn logic
   useEffect(() => {
-    // Only run enemy turn if game is playing, it's enemy's turn, and game has not ended
     if (
       state.gameState !== 'playing' ||
       state.currentTurn !== 'enemy' ||
@@ -37,11 +36,7 @@ export default function App() {
     let isMounted = true;
 
     const runEnemyTurn = async () => {
-      if (!isMounted) return; // Ensure we don't run if component unmounted
-
-      // Use the current state values directly, as dispatch ensures atomicity and new state will trigger re-render
-      // and thus a new effect execution if dependencies change.
-      // We read state here, but don't want changes to these specific values to re-trigger the effect *during* the turn.
+      if (!isMounted) return;
 
       await delay(800);
       let newSeals = state.enemySeals + 1;
@@ -82,15 +77,10 @@ export default function App() {
       });
       await delay(1000);
 
-      // IMPORTANT: After dispatching, the state used in this async function is potentially stale.
-      // A more robust solution for complex async flows might involve passing a getState function or
-      // re-reading the state if subsequent actions depend on the *immediately updated* state.
-      // For now, we assume a slight delay in state propagation is acceptable for AI logic.
       let currentDeck = state.enemyDeck.slice(1);
-      let currentCascades = 0;
-      let currentLastCost = card.cost;
-      let currentSeals =
-        state.enemySeals + (newSeals > state.enemySeals ? newSeals - state.enemySeals : 0);
+      let currentCascades = 1; // After the first card is captured, cascade count is 1.
+      let currentLastCost = card.cost; // The cost of the card just captured.
+      let currentSeals = newSeals; // Seals after initial gain for the turn.
 
       if (currentDeck.length > 0) {
         const next = currentDeck[0];
@@ -100,6 +90,7 @@ export default function App() {
         });
         await delay(1200);
 
+        // Now, use currentLastCost and currentCascades for decision.
         if (next.cost < currentLastCost && currentCascades < 3) {
           dispatch({
             type: 'ENEMY_CASCADED',
@@ -150,16 +141,14 @@ export default function App() {
     state.gameStatus,
     state.enemyBoard.length,
     state.enemyDeck,
-    state.enemyHero.ability,
-    state.enemyHero.id,
+    state.enemyHero,
     state.enemySeals,
     state.playerBoard.length,
     state.turnNumber,
-    dispatch,
   ]);
 
   const resetGame = () => {
-    dispatch({ type: 'RESET_GAME' }); // Need to add RESET_GAME to reducer
+    dispatch({ type: 'RESET_GAME' });
     setLocalPlayerHero(null);
     setLocalEnemyHero(null);
   };
@@ -177,7 +166,6 @@ export default function App() {
     );
   }
 
-  // Display Win/Loss screen if game has ended
   if (state.gameStatus !== 'playing') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 p-6 flex items-center justify-center">
