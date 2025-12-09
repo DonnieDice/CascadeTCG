@@ -636,15 +636,13 @@ Phase 3 ends with only 2/3 cascades used
 ## 📚 Glossary
 
 **Auto-Capture**: Free top card revealed at start of turn (Phase 2)  
-**Cascade**: Optional chained card reveals after auto-capture  
+**Cascade**: chained card reveals after auto-capture  
 **Free Cascade**: When R < C, capture costs 0 seals  
 **Forced Capture**: When R = C, capture costs (R + 1) seals  
 **Chain Break**: When R > C, cascade ends automatically  
 **Field**: Temporary zone holding this turn's captured cards  
 **Last Captured Cost (C)**: Reference value for comparing next revealed card  
 **Revealed Cost (R)**: Cost of card currently being evaluated for cascade  
-**Capture Resolution**: Phase where Field's total cost eliminates opponent's deck cards  
-**Deck Annihilation**: Permanently eliminating cards from opponent's deck  
 **Cycling**: Moving Field cards back to bottom of your deck at end of turn  
 **Total Captured**: Lifetime count of all cards captured (tracked for Mirror ability)
 

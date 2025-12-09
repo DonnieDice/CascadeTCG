@@ -84,6 +84,10 @@ export default function App() {
 
       if (currentDeck.length > 0) {
         const next = currentDeck[0];
+        if (!next) {
+          dispatch({ type: 'END_TURN' });
+          return;
+        }
         dispatch({
           type: 'SET_REVEALED_CARD',
           payload: { card: next, message: '✨ FREE: ' + next.name + ' (' + next.cost + ')' },
@@ -112,6 +116,9 @@ export default function App() {
           dispatch({ type: 'ENEMY_FAILED_CASCADE', payload: { card: next, message: '❌ FAILED' } });
           await delay(800);
         }
+      } else {
+        dispatch({ type: 'END_TURN' });
+        return;
       }
 
       if (state.enemyHero.id === 'fortune' && currentCascades <= 1) {
