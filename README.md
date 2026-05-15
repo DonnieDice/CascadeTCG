@@ -1,4 +1,4 @@
-# **GEMINI.md – CascadeTCG Technical Specification**
+# CascadeTCG
 
 **Project**: CascadeTCG  
 **Version**: 2.0 (Capture Race Edition)  
